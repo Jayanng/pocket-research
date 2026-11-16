@@ -52,7 +52,7 @@ d.line([120,sy+36,1460,sy+36],fill=(209,213,219),width=3)
 # four stage cards
 stages=[
  ("1 · SESSION","60 blocks","The network deterministically assigns suppliers to your app. No scheduler, no favorites: every node computes the same answer.",BLUE),
- ("2 · CLAIM","window opens +11 blocks, open 10","After serving, each supplier reports what it did. On-chain, public, and locked in before any checking.",GREEN),
+ ("2 · CLAIM","+11 blocks, open 10","After serving, each supplier reports what it did. On-chain, public, and locked in before any checking.",GREEN),
  ("3 · PROOF","opens +1 after claims, open 10","The chain picks ONE relay at random. The supplier must produce cryptographic evidence for exactly that one.",YELLOW),
  ("4 · SETTLEMENT","automatic","Pass the check, get paid. Fail, and cheating collapses: a liar gets caught ~50% per session.",RED),
 ]
@@ -94,11 +94,19 @@ d.text((150,by+52),"knowing which relay will be audited. Falsify half your relay
 
 # footer
 fy=H-84
-lx,lyf,lr=100,fy+28,26
-d.ellipse([lx-lr,lyf-lr,lx+lr,lyf+lr],fill=BLUE)
-d.ellipse([lx-0.64*lr,lyf-0.64*lr,lx+0.64*lr,lyf+0.64*lr],outline=(255,255,255),width=6)
-d.text((lx+40,lyf-22),"pocket",font=F('Semibold',30),fill=INK)
-d.text((lx+185,lyf-14),"Source: docs.pocket.network, Protocol > Sessions, Claims & Proofs · verified Nov 13 2026",
+# official Pocket logo lockup (docs.pocket.network/logo-black.svg), rendered at 52px height
+from PIL import Image as _Img
+_pocket_logo=_Img.open('/tmp/pocket-logo-footer.png').convert('RGBA')
+img.paste(_pocket_logo,(96,fy-4),_pocket_logo)
+
+
+fy=H-84
+# official Pocket logo lockup (docs.pocket.network/logo-black.svg), rendered at 52px height
+from PIL import Image as _Img
+_pocket_logo=_Img.open('/tmp/pocket-logo-footer.png').convert('RGBA')
+img.paste(_pocket_logo,(96,fy-4),_pocket_logo)
+
+d.text((340,fy+8),"Source: docs.pocket.network, Protocol > Sessions, Claims & Proofs · verified Nov 13 2026",
        font=F('Regular',19),fill=MUTED)
 
 img.save('/home/ubuntu/pocket-research/trust-machine.png')
